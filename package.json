@@ -1,0 +1,34 @@
+{
+  "name": "cypresstest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "merge-reports": "mochawesome-merge 'D:/projects/cypresstest/cypress/reports/html/.jsons/*.json' > mochawesome.json",
+    "generate-reports": "marge mochawesome.json",
+    "cypressrun": "npx cypress run --spec cypress/e2e/gsb-one.cy.js --browser chrome --reporter mocha-allure-reporter",
+    "cy:parallel": "cypress-parallel -s cypressrun -t 4 -d 'cypress/e2e/*' -a",
+    "report:allure": "allure generate allure-results --clean -o allure-report && allure open allure-report",
+    "report-pdf": "wkhtmltopdf mochawesome.json output.pdf",
+    "type": "module"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cypress/grep": "^4.1.1",
+    "@shelex/cypress-allure-plugin": "^2.41.2",
+    "allure-commandline": "^2.34.1",
+    "cypress": "^15.0.0",
+    "cypress-mochawesome-reporter": "^3.8.4",
+    "mocha-allure-reporter": "^1.4.0",
+    "mochawesome-merge": "^4.4.1",
+    "mochawesome-report-generator": "^6.2.0",
+    "puppeteer": "^24.17.0"
+  },
+  "dependencies": {
+    "cypress-parallel": "^0.15.0",
+    "html2pdf.js": "^0.11.1",
+    "wkhtmltopdf": "^0.4.0"
+  }
+}

@@ -1,0 +1,15 @@
+FROM cypress/browsers:latest
+
+WORKDIR /cypress
+
+COPY ./package.json .
+COPY ./package-lock.json .
+
+RUN npm install 
+
+COPY ./e2e ./e2e
+COPY ./fixtures ./fixtures
+COPY ./support ./support
+COPY ./cypress.config.js .
+
+ENTRYPOINT ["npx","cypress","run"]
